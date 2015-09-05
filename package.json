@@ -1,0 +1,19 @@
+{
+  "name": "uwaterloo-food-menus",
+  "version": "1.0.0",
+  "description": "Information on food options on campus, all in one place",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MKhowaja/uwaterloo-food-menus.git"
+  },
+  "author": "Mustaqeem Khowaja",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MKhowaja/uwaterloo-food-menus/issues"
+  },
+  "homepage": "https://github.com/MKhowaja/uwaterloo-food-menus#readme"
+}
