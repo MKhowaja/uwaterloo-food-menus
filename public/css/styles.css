@@ -1,0 +1,34 @@
+body {
+  padding-top: 70px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.navbar-inverse{
+	background-color: #941010;
+	border-color: #941010;
+}
+
+.navbar-header{
+	float: left;
+	text-align: center;
+	width: 100%;
+}
+
+.navbar-brand {
+	margin: auto;
+	float: none;
+	width: 100%;
+}
+
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.navbar-inverse .navbar-brand {
+	color: #FFFFFF;
+}
+
