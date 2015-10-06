@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/MKhowaja/uwaterloo-food-menus#readme",
   "dependencies": {
+    "bower": "^1.5.3",
     "express": "^4.13.3",
     "nodemon": "^1.4.1",
     "request": "^2.61.0"

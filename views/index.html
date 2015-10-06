@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="menu">
 <head>
 	<title>UWaterloo Restaurant Menus</title>
 	<meta charset = "utf-8">
@@ -12,6 +12,8 @@
 
 	<!-- Custom styles -->
 	<link rel="stylesheet" href="../public/css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+    <script src="../public/js/core.js"></script>
 
 </head>
 <body>
@@ -23,11 +25,11 @@
 		</nav>	
 	</div>
 
-	<div class="container">
+	<div class="container" ng-controller="menuController as menu">
 		<div class="accordion" id="accordion2">
-			<div class="accordion-group">
+			<div class="accordion-group" ng-repeat="menuItem in menuItems">
     			<div class="accordion-heading">
-					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">Collapsible Group Item #1</a>
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">{{ menuItem.outlet_name }}</a>
 				</div>
 				<div id="collapseOne" class="accordion-body collapse">
 					<div class="accordion-inner">
@@ -35,6 +37,7 @@
     				</div>
     			</div>
     		</div>
+<!--
     		<div class="accordion-group">
     			<div class="accordion-heading">
     				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Collapsible Group Item #2</a>
@@ -43,6 +46,7 @@
     				<div class="accordion-inner">Anim pariatur cliche...</div>
     			</div>
     		</div>
+-->
     	</div>
     </div>
 	
