@@ -1,17 +1,45 @@
-module.exports = {
-    
-    angularApp : angular.module('menu', []),
+( function() {
 
-    menuController : function($scope, $http){
-        var parsed;
+    var menu = angular.module('menu', []);
 
-        request(url, function(error, response, body){
-            if (!error && response.statusCode == 200){
-                parsed = JSON.parse(body);
-                console.log(parsed["data"]);
-            }
-        });
-        $scope.menuItems = parsed["data"]["outlets"];
-    }    
-}
+    function mainController($scope, $http) {
+        $scope.formData = {};
 
+        // when landing on the page, get all todos and show them
+        $http.get('/menu')
+            .success(function(data) {
+                console.log(data);
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    /*
+        // when submitting the add form, send the text to the node API
+        $scope.createTodo = function() {
+            $http.post('/api/todos', $scope.formData)
+                .success(function(data) {
+                    $scope.formData = {}; // clear the form so our user is ready to enter another
+                    $scope.todos = data;
+                    console.log(data);
+                })
+                .error(function(data) {
+                    console.log('Error: ' + data);
+                });
+        };
+
+        // delete a todo after checking it
+        $scope.deleteTodo = function(id) {
+            $http.delete('/api/todos/' + id)
+                .success(function(data) {
+                    $scope.todos = data;
+                    console.log(data);
+                })
+                .error(function(data) {
+                    console.log('Error: ' + data);
+                });
+        };
+    */
+    }
+    angular.module('menu', []).controller('mainController', mainController);
+
+}());

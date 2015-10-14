@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="menu">
+<html>
 <head>
 	<title>UWaterloo Restaurant Menus</title>
 	<meta charset = "utf-8">
@@ -12,11 +12,11 @@
 
 	<!-- Custom styles -->
 	<link rel="stylesheet" href="../public/css/styles.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="../public/js/core.js"></script>
 
 </head>
-<body>
+<body ng-controller="mainController">
 	<div class="container-fluid">
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="navbar-header">
@@ -25,9 +25,9 @@
 		</nav>	
 	</div>
 
-	<div class="container" ng-controller="menuController as menu">
-		<div class="accordion" id="accordion2">
-			<div class="accordion-group" ng-repeat="menuItem in menuItems">
+	<div class="container" ng-app="menu">
+		<div class="accordion" id="accordion2" ng-controller="mainController">
+			<div class="accordion-group">
     			<div class="accordion-heading">
 					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">{{ menuItem.outlet_name }}</a>
 				</div>
