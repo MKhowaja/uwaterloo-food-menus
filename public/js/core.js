@@ -8,7 +8,8 @@
         // when landing on the page, get all todos and show them
         $http.get('/menu')
             .success(function(data) {
-                console.log(data);
+                $scope.menuItems = data ["data"]
+                console.log(data ["data"]);
             })
             .error(function(data) {
                 console.log('Error: ' + data);

@@ -27,9 +27,9 @@
 
 	<div class="container" ng-app="menu">
 		<div class="accordion" id="accordion2" ng-controller="mainController">
-			<div class="accordion-group">
+			<div class="accordion-group" ng-repeat="outlet in menuItems.outlets">
     			<div class="accordion-heading">
-					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">{{ menuItem.outlet_name }}</a>
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">{{ outlet.outlet_name }}</a>
 				</div>
 				<div id="collapseOne" class="accordion-body collapse">
 					<div class="accordion-inner">
