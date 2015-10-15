@@ -2,14 +2,16 @@
 
     var menu = angular.module('menu', []);
 
+    //var daysOfWeek = [ "Sunday", "Monday" , "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ]
     function mainController($scope, $http) {
         $scope.formData = {};
 
         // when landing on the page, get all todos and show them
         $http.get('/menu')
             .success(function(data) {
-                $scope.menuItems = data ["data"]
+                $scope.restaurants = data ["data"]
                 console.log(data ["data"]);
+                $scope.day = new Date().getDay();
             })
             .error(function(data) {
                 console.log('Error: ' + data);
