@@ -1,48 +1,46 @@
 ( function() {
 
-    var menu = angular.module('menu', []);
+    var myApp = angular.module('myApp', []);
 
-    //var daysOfWeek = [ "Sunday", "Monday" , "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ]
-    function mainController($scope, $http) {
-        $scope.formData = {};
-
-        // when landing on the page, get all todos and show them
+    myApp.controller('menuController', ['$scope', '$http', function($scope, $http) {
         $http.get('/menu')
             .success(function(data) {
                 $scope.restaurants = data ["data"]
-                console.log(data ["data"]);
-                $scope.day = new Date().getDay();
+                $scope.day = ( new Date().getDay() || 7 ) - 1; //Makes Monday 0, Tuesday 1 and so on
             })
             .error(function(data) {
                 console.log('Error: ' + data);
             });
-    /*
-        // when submitting the add form, send the text to the node API
-        $scope.createTodo = function() {
-            $http.post('/api/todos', $scope.formData)
-                .success(function(data) {
-                    $scope.formData = {}; // clear the form so our user is ready to enter another
-                    $scope.todos = data;
-                    console.log(data);
-                })
-                .error(function(data) {
-                    console.log('Error: ' + data);
-                });
-        };
+    }]);
 
-        // delete a todo after checking it
-        $scope.deleteTodo = function(id) {
-            $http.delete('/api/todos/' + id)
-                .success(function(data) {
-                    $scope.todos = data;
-                    console.log(data);
-                })
-                .error(function(data) {
-                    console.log('Error: ' + data);
-                });
-        };
-    */
-    }
-    angular.module('menu', []).controller('mainController', mainController);
+    myApp.controller('announcementController', ['$scope', '$http', function($scope, $http) {
+        $scope.isNews = false;
+        $http.get('/announcements')
+            .success (function(data) {
+                $scope.announcements = data["data"];
+                if ($scope.announcements && $scope.announcements[0] && $scope.announcements[0].ad_text != null){
+                    $scope.isNews = true;
+                }
+            })
+            .error (function(data) {
+               console.log('Error: ' + data); 
+            });
+    }]);
+
+    myApp.controller('locationsController', ['$scope', '$http', function($scope, $http) {
+        $http.get('/locations')
+            .success(function(data) {
+                // for ( var i = 0; i < data ["data"].length; i++ ) {
+                //     if (data ["data"] [i].outlet_name){
+                //         //item.outlet_name = item.outlet_name.substring(0, item.outlet_name.indexOf('-'));
+                //         console.log(data ["data"] [i].outlet_name.substring(0, data ["data"] [i].outlet_name.indexOf('-')));
+                //     }
+                // }
+                $scope.locations = data ["data"]
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    }]);
 
 }());

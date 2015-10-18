@@ -6,6 +6,14 @@ body {
   text-align: center;
 }
 
+.navbar-default{
+    color: white;
+}
+
+.navbar-default .navbar-text {
+    color: #ffffff;
+}
+
 .navbar-inverse{
 	background-color: #941010;
 	border-color: #941010;
@@ -21,6 +29,12 @@ body {
 	margin: auto;
 	float: none;
 	width: 100%;
+}
+
+.navbar-text {
+    float: none;
+    font-size: 1.5em;
+    font-color: white;
 }
 
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand{
@@ -68,4 +82,24 @@ body {
     border-top: 1px solid #ddd;
     border-bottom: 0;
     padding-left: 30px;
+}
+
+.panel-heading {
+    cursor: pointer;
+}
+
+.btn {
+    white-space:normal !important;
+    text-align: left;
+}
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.btn-default:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
 }

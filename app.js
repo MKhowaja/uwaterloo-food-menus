@@ -5,17 +5,18 @@ var app = express();
 var path = require('path');
 app.use(express.static(path.join(__dirname, 'bower_components')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
-var url = 'https://api.uwaterloo.ca/v2/foodservices/2013/12/menu.json?key=d5bebdba9c36122b95b871d4b72c4ff0';
+var urlStart = 'https://api.uwaterloo.ca/v2/foodservices';
+var urlEnd = '.json?key=d5bebdba9c36122b95b871d4b72c4ff0';
 
 app.get('/', function(req, res){
 	res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
 app.get('/menu', function(req, res){
-	request(url, function(error, response, body){
+	var requestUrl = urlStart + '/menu' + urlEnd;
+	request(requestUrl, function(error, response, body){
 		if (!error && response.statusCode == 200){
 			var parsed = JSON.parse(body);
-			console.log(parsed["data"]);
 			res.send(parsed);
 		}
 		else {
@@ -23,6 +24,32 @@ app.get('/menu', function(req, res){
 		}
 	});
 
+});
+
+app.get('/announcements', function(req, res){
+	var requestUrl = urlStart + '/announcements' + urlEnd;
+	request(requestUrl, function(error, response, body){
+		if (!error && response.statusCode == 200){
+			var parsed = JSON.parse(body);
+			res.send(parsed);
+		}
+		else {
+			res.send(error);
+		}
+	});
+});
+
+app.get('/locations', function(req, res){
+	var requestUrl = urlStart + '/locations' + urlEnd;
+	request(requestUrl, function(error, response, body){
+		if (!error && response.statusCode == 200){
+			var parsed = JSON.parse(body);
+			res.send(parsed);
+		}
+		else {
+			res.send(error);
+		}
+	});
 });
 
 var server = app.listen(80, function(){

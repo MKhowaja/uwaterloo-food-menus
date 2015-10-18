@@ -5,76 +5,87 @@
 	<meta charset = "utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="author" content="Mustaqeem Khowaja">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width">
 	<link rel="icon" href="../public/img/favicon.ico">
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="../public/css/flatly.css">
 	<!-- Custom styles -->
 	<link rel="stylesheet" href="../public/css/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="../public/js/core.js"></script>
 
 </head>
-<body ng-controller="mainController">
+<body ng-app="myApp">
 	<div class="container-fluid">
-		<nav class="navbar navbar-inverse navbar-fixed-top">
+		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
-				<p class="navbar-brand">UWaterloo Restaurant Menus</p>
+				<p class="navbar-text">UWaterloo Restaurant Menus</p>
 			</div>
 		</nav>	
 	</div>
-<!--
-	<div class="container" ng-app="menu">
-		<div class="accordion" id="accordion2" ng-controller="mainController">
-			<div class="accordion-group" ng-repeat="outlet in menuItems.outlets">
-    			<div class="accordion-heading">
-					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse{{$index}}">{{ outlet.outlet_name }}</a>
-				</div>
-                <div class="container" id="container-accordion-collapse">
-                    <div id="collapse{{$index}}" class="accordion-body collapse">
-                        <div class="accordion-inner">
-            Anim pariatur cliche...
-                        </div>
-                    </div>    
+
+
+    <div class="container">
+        <section ng-controller="announcementController">
+            <h3>Announcements</h3>
+            <hr>
+            <div class="row" ng-repeat="announcement in announcements" ng-show="isNews">
+                <div class="col-xs-12 col-sm-2">
+                    {{ announcement.date }}
                 </div>
-				
-    		</div>
-
-    	</div>
-    </div>
--->	
-
-
-    <div class="container" ng-app="menu">  
-        <div class="panel-group" id="accordion" ng-controller="mainController">
-            <div class="panel panel-default" ng-repeat="outlet in restaurants.outlets">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}"><span class="glyphicon glyphicon-cutlery"></span>{{ outlet.outlet_name }}</a>
-                    </h4>
-                </div>
-                <div id="collapse{{$index}}" class="panel-collapse collapse">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <span class="glyphicon glyphicon-cutlery text-primary"></span> <a>Lunch</a>
-                            <ul class="list-group">
-                                <li class="list-group-item" ng-repeat="menuItem in outlet.menu[1].meals.lunch">
-                                    <span class="glyphicon glyphicon-minus text-primary"></span>
-                                    <a>menuItem.product_name</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="list-group-item">
-                            <span class="glyphicon glyphicon-cutlery text-primary"></span> <a>Dinner</a>
-                            <ul class="list-group">
-                                <li class="list-group-item"><span class="glyphicon glyphicon-minus text-primary"></span> <a>Edit Blog</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                <div class="col-xs-12 col-sm-8">
+                    {{ announcement.ad_text }}
                 </div>
             </div>
-        </div>
+            <p ng-hide="isNews">No announcements this week.</p>
+            <br>
+            <section>
+
+            </section>
+        </section>
+        <section ng-controller="locationsController">
+            <h3>Restaurants Open Right Now</h3>
+            <hr>
+            <button type="button" class="btn btn-default btn-block" ng-repeat="location in locations" ng-show="location.is_open_now">
+                <p>{{ location.outlet_name }}</p>
+            </button>     
+        </section>
+        <section ng-controller="menuController">
+            
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default" ng-repeat="outlet in restaurants.outlets">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#collapse{{$index}}">
+                        <h4 class="panel-title">
+                            <span class="glyphicon glyphicon-cutlery"></span>{{ outlet.outlet_name }}
+                        </h4>
+                    </div>
+                    <div id="collapse{{$index}}" class="panel-collapse collapse">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="glyphicon glyphicon-cutlery text-primary"></span> <a>Lunch</a>
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat="menuItem in outlet.menu[day].meals.lunch">
+                                        <span class="glyphicon glyphicon-minus text-primary"></span>
+                                        <a>{{ menuItem.product_name }}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="glyphicon glyphicon-cutlery text-primary"></span> <a>Dinner</a>
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat="menuItem in outlet.menu[day].meals.dinner">
+                                        <span class="glyphicon glyphicon-minus text-primary"></span>
+                                        <a>{{ menuItem.product_name }}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section> 
+        
     </div>
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<!-- Bootstrap -->
