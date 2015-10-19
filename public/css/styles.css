@@ -1,5 +1,10 @@
 body {
-  padding-top: 70px;
+  padding-top: 120px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 80px;
+  }
 }
 .starter-template {
   padding: 40px 15px;
@@ -12,6 +17,10 @@ body {
 
 .navbar-default .navbar-text {
     color: #ffffff;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: white;
 }
 
 .navbar-inverse{
